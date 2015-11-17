@@ -29,6 +29,7 @@
       <% if (page.path === "tags/index.html"){ %>
         <%- partial('_partial/page-tags') %>
       <% } %>
+
     </div>
     <% if (index){ %>
     <div class="article-info article-info-index">
@@ -60,11 +61,19 @@
 <% } %>
 
 <% if (!index && theme.duoshuo && post.comments){ %>
-<%- partial('post/duoshuo', {
-    key: post.path,
-    title: post.title,
-    url: config.url+url_for(post.path)
-  }) %>
+  <% if (is_post()){ %>
+  <%- partial('post/duoshuo', {
+      key: post.slug,
+      title: post.title,
+      url: config.url+url_for(post.path)
+    }) %>
+  <% } else {%>
+  <%- partial('post/duoshuo', {
+      key: post.path,
+      title: post.title,
+      url: config.url+url_for(post.path)
+    }) %>
+  <% } %>
 <% } %>
 
 <% if (!index && post.comments && config.disqus_shortname){ %>
@@ -115,7 +124,7 @@
         open_in_new: <%=theme.open_in_new%>
         }
         </script>
-    <% } %>    
+    <% } %>
 <% } else { %>
     <script>
     var yiliaConfig = {
