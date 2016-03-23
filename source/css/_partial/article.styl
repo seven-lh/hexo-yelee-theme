@@ -218,8 +218,11 @@ line-height: 1.65em;
       color:#88acdb;
     };
     text-align: center;
-    &::before, &::after {
-    content:" —— ";
+    &::before, {
+    content:"  ";
+    };
+    &::after {
+    content:"  ";
     };
   }
   h3 {
@@ -232,8 +235,11 @@ line-height: 1.65em;
     &:hover a {
       text-decoration: underline;
     };
+    &::before, {
+    content:" ";
+    };
     &::after {
-      content: " >";
+    content:" ";
     };
   }
   h4,h5,h6{
